@@ -124,10 +124,10 @@ if __name__ == '__main__':
         uav_state.csv:  t x y z vx vy vz phi theta psi p q r
     """
     path = os.path.dirname(os.path.abspath(__file__)) + '/'
-    controlData = pd.read_csv(path + 'control.csv', header=0).to_numpy()
-    observeData = pd.read_csv(path + 'observe.csv', header=0).to_numpy()
-    ref_cmdData = pd.read_csv(path + 'ref_cmd.csv', header=0).to_numpy()
-    uav_stateData = pd.read_csv(path + 'uav_state.csv', header=0).to_numpy()
+    controlData = pd.read_csv(path + '/uav0/control.csv', header=0).to_numpy()
+    observeData = pd.read_csv(path + '/uav0/observe.csv', header=0).to_numpy()
+    ref_cmdData = pd.read_csv(path + '/uav0/ref_cmd.csv', header=0).to_numpy()
+    uav_stateData = pd.read_csv(path + '/uav0/uav_state.csv', header=0).to_numpy()
 
     L = controlData.shape[0]
     time = controlData[0: L - 2, 0]

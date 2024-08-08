@@ -9,10 +9,9 @@ from control.utils import *
 
 cur_path = os.path.dirname(os.path.abspath(__file__))
 
-
 if __name__ == "__main__":
-    rospy.init_node("control_single")
-    
+    rospy.init_node("uav0_control_single")
+
     t_miemie = rospy.get_param('~t_miemie')  # 轨迹跟踪前的初始化等待时间
     dt = rospy.get_param('~dt')  # 采样时间
     time_max = rospy.get_param('~time_max')  # 最大仿真时间

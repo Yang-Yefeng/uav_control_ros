@@ -6,7 +6,7 @@ from geometry_msgs.msg import PoseStamped
 from sensor_msgs.msg import BatteryState
 from std_msgs.msg import Float32MultiArray
 
-from control.utils import *
+from .utils import *
 
 
 class UAV_ROS:
@@ -64,7 +64,7 @@ class UAV_ROS:
         # 2: control by FNTSMC ([phi_d theta_d psi_d throttle])
         # 3: finish and switch OFFBOARD to position
         
-        self.state_sub = rospy.Subscriber(self.group + "/mavros/state", State, callback=self.state_cb)
+        self.state_sub = rospy.Subscriber(self.group + "/mavros/state", State, callback=self.state_cb)      # TODO 抽
         self.ctrl_param_sub = rospy.Subscriber(self.group + "/ctrl_param", Float32MultiArray, callback=self.ctrl_param_cb)
         
         self.uav_vel_sub = rospy.Subscriber(self.group + "/mavros/local_position/odom", Odometry, callback=self.uav_odom_cb)
@@ -78,15 +78,15 @@ class UAV_ROS:
         
         '''arming service'''
         rospy.wait_for_service(self.group + "/mavros/cmd/arming")  # 等待解锁电机的 service 建立
-        self.arming_client = rospy.ServiceProxy(self.group + "/mavros/cmd/arming", CommandBool)
+        self.arming_client = rospy.ServiceProxy(self.group + "/mavros/cmd/arming", CommandBool)     # TODO 抽
         
         '''working mode service'''
         rospy.wait_for_service(self.group + "/mavros/set_mode")  # 等待设置 UAV 工作模式的 service 建立
-        self.set_mode_client = rospy.ServiceProxy(self.group + "/mavros/set_mode", SetMode)
+        self.set_mode_client = rospy.ServiceProxy(self.group + "/mavros/set_mode", SetMode)     # TODO 抽
         
         self.rate = rospy.Rate(1 / self.dt)
-        self.offb_set_mode = SetModeRequest()  # 先设置工作模式为 offboard
-        self.arm_cmd = CommandBoolRequest()
+        self.offb_set_mode = SetModeRequest()  # 先设置工作模式为 offboard  # TODO 抽
+        self.arm_cmd = CommandBoolRequest()     # TODO 抽
     
     def rk44(self, action: list, uav_state: np.ndarray):
         self.phi_d = action[0]

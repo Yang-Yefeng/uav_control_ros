@@ -44,15 +44,15 @@ if __name__ == "__main__":
     assert dt == controller.dt == obs_xy.dt == obs_z.dt  # 检查各个模块采样时间是否相同
     assert time_max == uav_ros.time_max
     
-    ra = np.array([0., 0., 0., deg2rad(0)])
-    rp = np.array([10, 10, 10, 10])  # xd yd zd psid 周期
-    rba = np.array([0, 0, 1.8, deg2rad(0)])  # xd yd zd psid 幅值偏移
-    rbp = np.array([np.pi / 2, 0, 0, 0])  # xd yd zd psid 相位偏移
-    
-    # ra = np.array([1.3, 1.3, 0.4, deg2rad(0)])
-    # rp = np.array([6, 6, 6, 10])  # xd yd zd psid 周期
-    # rba = np.array([0.0, 0.0, 1.0, deg2rad(0)])  # xd yd zd psid 幅值偏移
+    # ra = np.array([0., 0., 0., deg2rad(0)])
+    # rp = np.array([10, 10, 10, 10])  # xd yd zd psid 周期
+    # rba = np.array([0, 0, 1.8, deg2rad(0)])  # xd yd zd psid 幅值偏移
     # rbp = np.array([np.pi / 2, 0, 0, 0])  # xd yd zd psid 相位偏移
+    
+    ra = np.array([1.5, 1.5, 0.2, deg2rad(18)])
+    rp = np.array([8, 8, 10, 10])  # xd yd zd psid 周期
+    rba = np.array([0.0, 0.0, 1.0, deg2rad(0)])  # xd yd zd psid 幅值偏移
+    rbp = np.array([np.pi / 2, 0, 0, 0])  # xd yd zd psid 相位偏移
     
     e = np.zeros(3).astype(float)
     de = np.zeros(3).astype(float)
@@ -113,8 +113,8 @@ if __name__ == "__main__":
                                                 dd_ref=dot2_eta_d,
                                                 # obs=observe if t_now > t_MIEMIE else np.zeros(3),
                                                 obs=observe if t_now > 0. else np.zeros(3),
-                                                e_max=0.5,
-                                                dot_e_max=1.5)
+                                                e_max=0.2,
+                                                dot_e_max=0.5)
                 phi_d, theta_d, uf = uav_ros.publish_ctrl_cmd(controller.control_out, psi_d, use_gazebo)
             
             '''5. get new uav states from Gazebo'''

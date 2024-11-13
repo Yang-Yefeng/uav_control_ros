@@ -14,7 +14,6 @@ parameters:
     dt: 0.01
     group: '/uav0'
     time_max: 30
-
 lk_smc_parameters:
     eta: [0.6666667, 0.6666667, 0.6666667]
     gamma2: [1., 1., 1.]

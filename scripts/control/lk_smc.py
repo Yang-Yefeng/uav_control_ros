@@ -18,7 +18,7 @@ class lk_smc_param:
         self.gamma1 = np.sqrt(self.gamma2 * self.gamma3 / 4) + 1
         self.k1 = np.sqrt(self.k2 * self.k3)
         self.d_delta = np.zeros(3).astype(float)
-        self.delta = np.array(_p['delta']).astype(float)
+        self.delta = np.array(_p['delta0']).astype(float)
         self.c1 = 1.5 * np.ones(3)
         self.c2 = 1 / (2 ** ((1 + self.eta) / 2))
         self.c3 = 2 ** (self.eta - 2)
@@ -27,7 +27,7 @@ class lk_smc_param:
 
 class lk_smc:
     def __init__(self,
-                 param: lk_smc_param = lk_smc_param(),
+                 param: lk_smc_param,
                  is_ideal: bool = False):
         self.eta = param.eta
         self.gamma2 = param.gamma2
@@ -160,6 +160,6 @@ class lk_smc:
     def save_ctrl_adaptive(self, path:str, flag:str):
         pd.DataFrame(np.hstack((self.rec_t, self.rec_d_delta, self.rec_delta)),
                      columns=['time',
-                              'd_delta_roll', 'd_delta_pitch', 'd_delta_yaw',
-                              'delta_roll', 'delta_pitch', 'delta_yaw']). \
+                              'd_delta_x', 'd_delta_y', 'd_delta_z',
+                              'delta_x', 'delta_y', 'delta_z']). \
             to_csv(path + flag + '_ctrl_adaptive.csv', sep=',', index=False)

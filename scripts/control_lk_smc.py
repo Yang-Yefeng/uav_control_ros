@@ -36,7 +36,7 @@ if __name__ == "__main__":
     ctrl_param_record = None
     '''define controllers and observers'''
 
-    ra = np.array([1.5, 1.5, 0.2, deg2rad(18)])
+    ra = np.array([1.5, 1.5, 0.2, deg2rad(0)])
     rp = np.array([8, 8, 10, 10])  # xd yd zd psid 周期
     rba = np.array([0.0, 0.0, 1.0, deg2rad(0)])  # xd yd zd psid 幅值偏移
     rbp = np.array([np.pi / 2, 0, 0, 0])  # xd yd zd psid 相位偏移
@@ -45,6 +45,8 @@ if __name__ == "__main__":
     de = np.zeros(3).astype(float)
 
     ref_all, dot_ref_all, dot2_ref_all = ref_uav_sequence_with_dead(dt, uav_ros.time_max, t_miemie, ra, rp, rba, rbp)
+    
+    print('hhh', ref_all.shape)
 
     t0 = rospy.Time.now().to_sec()
     while not rospy.is_shutdown():
@@ -106,8 +108,6 @@ if __name__ == "__main__":
                           'd_out_obs': observe,
                           'state': uav_ros.uav_state_call_back(),
                           'dot_angle': uav_ros.uav_dot_att()}
-            data_record.record(data_block)
-
             data_record.record(data_block)
 
             if data_record.index == data_record.N:

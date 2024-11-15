@@ -49,8 +49,8 @@ if __name__ == "__main__":
     # rba = np.array([0, 0, 1.8, deg2rad(0)])  # xd yd zd psid 幅值偏移
     # rbp = np.array([np.pi / 2, 0, 0, 0])  # xd yd zd psid 相位偏移
     
-    ra = np.array([1.5, 1.5, 0.2, deg2rad(18)])
-    rp = np.array([8, 8, 10, 10])  # xd yd zd psid 周期
+    ra = np.array([1.0, 1.0, 0.0, deg2rad(0)])
+    rp = np.array([10, 10, 10, 10])  # xd yd zd psid 周期
     rba = np.array([0.0, 0.0, 1.0, deg2rad(0)])  # xd yd zd psid 幅值偏移
     rbp = np.array([np.pi / 2, 0, 0, 0])  # xd yd zd psid 相位偏移
     

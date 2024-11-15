@@ -173,8 +173,8 @@ class UAV_ROS:
         
         self.set_state(uav_odom_2_uav_state(self.uav_odom))
         self.local_pos_pub.publish(self.pose)
-        if ((np.linalg.norm(self.pos0 - self.pos) < 0.2) and  # 位置误差
-                (np.linalg.norm(self.vel) < 0.1) and  # 速度
+        if ((np.linalg.norm(self.pos0 - self.pos) < 0.4) and  # 位置误差
+                (np.linalg.norm(self.vel) < 0.2) and  # 速度
                 (np.linalg.norm(self.att[2]) < deg2rad(5))):  # 偏航角
             self.global_flag = 2
         else:
